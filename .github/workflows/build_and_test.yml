@@ -10,12 +10,12 @@ on:
 jobs:
   build_and_test:
     name: Build and Test iOS Application
-    runs-on: macos-12
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
     - uses: maxim-lobanov/setup-xcode@v1
       with:
-        xcode-version: '14.1'
+        xcode-version: latest-stable
     - name: Build and Test Example App
       run: |
           xcodebuild test \
@@ -26,10 +26,6 @@ jobs:
             -resultBundlePath TestAppUITests.xcresult \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO
-    - name: install recorder and record session
-      run: |
-          brew install ffmpeg
-          ffmpeg -f avfoundation -i 0 -t 120 out.mov
     - name: Upload Artifact
       if: always()
       uses: actions/upload-artifact@v3
