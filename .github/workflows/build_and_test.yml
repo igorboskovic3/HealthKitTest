@@ -26,7 +26,6 @@ jobs:
             -resultBundlePath TestAppUITests.xcresult \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO
-            sleep 900
     - name: Upload Artifact
       if: always()
       uses: actions/upload-artifact@v3
